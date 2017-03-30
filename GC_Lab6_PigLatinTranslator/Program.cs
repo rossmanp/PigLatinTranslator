@@ -16,20 +16,26 @@ namespace GC_Lab6_PigLatinTranslator
     {
         static void Main(string[] args)
         {
+            char[] delimiterChars = { ' ' };
+
             Console.WriteLine("Welcome to the Pig Latin Translator!");
-            Console.WriteLine("\nEnter a word to be translated: ");
+            Console.WriteLine("\nEnter a word or sentence to be translated: ");
             string word = Console.ReadLine();
             word = word.ToLower();
-            char firstLetter = word[0];
-            bool isVowel = "aeiouAEIOU".IndexOf(firstLetter) >= 0;
-            if (isVowel == true)
+            string[] words = word.Split(delimiterChars);
+            foreach (string s in words)
             {
-                Console.WriteLine(word + "way");
-            }
-            else
-            {
-                string newWord = word.Remove(0, 1);
-                Console.WriteLine(newWord + firstLetter + "way");
+                char firstLetter = s[0];
+                bool isVowel = "aeiouAEIOU".IndexOf(firstLetter) >= 0;
+                if (isVowel == true)
+                {
+                    Console.Write(" " + s + "way");
+                }
+                else
+                {
+                    string newWord = s.Remove(0, 1);
+                    Console.Write(" " + newWord + firstLetter + "way");
+                }
             }
             Console.ReadLine();
         }
