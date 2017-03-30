@@ -1,0 +1,6 @@
+c:\users\peter\onedrive\documents\visual studio 2015\Projects\GC_Lab6_PigLatinTranslator\GC_Lab6_PigLatinTranslator\bin\Debug\GC_Lab6_PigLatinTranslator.exe.config
+c:\users\peter\onedrive\documents\visual studio 2015\Projects\GC_Lab6_PigLatinTranslator\GC_Lab6_PigLatinTranslator\bin\Debug\GC_Lab6_PigLatinTranslator.exe
+c:\users\peter\onedrive\documents\visual studio 2015\Projects\GC_Lab6_PigLatinTranslator\GC_Lab6_PigLatinTranslator\bin\Debug\GC_Lab6_PigLatinTranslator.pdb
+c:\users\peter\onedrive\documents\visual studio 2015\Projects\GC_Lab6_PigLatinTranslator\GC_Lab6_PigLatinTranslator\obj\Debug\GC_Lab6_PigLatinTranslator.csprojResolveAssemblyReference.cache
+c:\users\peter\onedrive\documents\visual studio 2015\Projects\GC_Lab6_PigLatinTranslator\GC_Lab6_PigLatinTranslator\obj\Debug\GC_Lab6_PigLatinTranslator.exe
+c:\users\peter\onedrive\documents\visual studio 2015\Projects\GC_Lab6_PigLatinTranslator\GC_Lab6_PigLatinTranslator\obj\Debug\GC_Lab6_PigLatinTranslator.pdb
