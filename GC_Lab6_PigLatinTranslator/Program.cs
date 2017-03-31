@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 
 //Pete Rossman
@@ -43,8 +44,7 @@ namespace GC_Lab6_PigLatinTranslator
                 }
             }
 
-            //The input is converted to lowercase and split into words.
-            word = word.ToLower();
+            //The input is converted to lowercase and split into words.            
             string[] words = word.Split(delimiterChars);
             Console.Write("The Pig Latin translation is: ");
 
@@ -56,7 +56,7 @@ namespace GC_Lab6_PigLatinTranslator
                 char firstLetter = s[0];
                 bool isVowel = "aeiouAEIOU".IndexOf(firstLetter) >= 0;
                 int indexOf = s.IndexOfAny(symbols);
-
+                string way = "way";
                 // If a word contains a symbol or a number, the word is not translated.
 
                 if (indexOf > -1 || s.Any(char.IsDigit))
@@ -69,13 +69,17 @@ namespace GC_Lab6_PigLatinTranslator
                                                                                                      
                 else if (isVowel == true)
                 {
+                    if (IsAllUpper(s))
+                    {
+                        way = "WAY";
+                    }
                     if (Char.IsPunctuation(s[s.Length - 1]))
                     {
-                        Console.Write(s.Substring(0, s.Length - 1) + "way" + s[s.Length - 1] + " ");
+                        Console.Write(s.Substring(0, s.Length - 1) + way + s[s.Length - 1] + " ");
                     }
                     else
                     {
-                        Console.Write(s + "way" + " ");
+                        Console.Write(s + way + " ");
                     }
                 }
 
@@ -86,22 +90,46 @@ namespace GC_Lab6_PigLatinTranslator
                 else
                 {
                     string newWord = s.Remove(0, 1);
+                    if (Char.IsUpper(firstLetter) && !IsAllUpper(s))
+                    {
+                        firstLetter = Char.ToLower(firstLetter);
+                        newWord = Char.ToUpper(newWord[0]) + newWord.Substring(1, newWord.Length - 1);                                              
+                    }
+                    if (IsAllUpper(s))
+                    {
+                        way = "WAY";
+                    }
                     if (Char.IsPunctuation(newWord[newWord.Length - 1]))
                     {
                         Console.Write(newWord.Substring(0, newWord.Length - 1) + 
-                        firstLetter + "way" + newWord[newWord.Length - 1] + " ");
+                        firstLetter + way + newWord[newWord.Length - 1] + " ");
                     }
                     else if(firstLetter.Equals('w'))
                     {
-                        Console.Write(newWord + "way" + " ");
+                        Console.Write(newWord + way + " ");
                     }
                     else
-                    {                       
-                        Console.Write(newWord + firstLetter + "way" + " ");
+                    {                        
+                        Console.Write(newWord + firstLetter + way + " ");
                     }
                 }
             }
             Console.ReadLine();
         }
+
+        public static bool IsAllUpper(string input)
+        {
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (!Char.IsUpper(input[i]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
+
+   
 }
