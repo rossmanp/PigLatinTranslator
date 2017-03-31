@@ -43,7 +43,7 @@ namespace GC_Lab6_PigLatinTranslator
                 char firstLetter = s[0];
                 bool isVowel = "aeiouAEIOU".IndexOf(firstLetter) >= 0;
                 int indexOf = s.IndexOfAny(SpecialChars);
-                if (indexOf > -1)
+                if (indexOf > -1 || s.Any(char.IsDigit))
                 {
                     Console.Write(s + " ");
                 }                                                                                        
