@@ -23,7 +23,7 @@ namespace GC_Lab6_PigLatinTranslator
 
             //This array is used to detect if a word contains symbols.
             //If a word does contain one of the symbols in the array, it is not translated.
-            char[] symbols = "@#$%^&*()".ToCharArray();
+            char[] symbols = "@#$%^+&*()".ToCharArray();
 
             Console.WriteLine("Welcome to the Pig Latin Translator!");
 
@@ -56,10 +56,17 @@ namespace GC_Lab6_PigLatinTranslator
                 char firstLetter = s[0];
                 bool isVowel = "aeiouAEIOU".IndexOf(firstLetter) >= 0;
                 int indexOf = s.IndexOfAny(symbols);
+
+                // If a word contains a symbol or a number, the word is not translated.
+
                 if (indexOf > -1 || s.Any(char.IsDigit))
                 {
                     Console.Write(s + " ");
-                }                                                                                        
+                }
+                
+                //If the word starts with a vowel, "way" is appended to the word' end.
+                //If a word ends with a punctuation mark, that mark is kept.
+                                                                                                     
                 else if (isVowel == true)
                 {
                     if (Char.IsPunctuation(s[s.Length - 1]))
@@ -71,6 +78,11 @@ namespace GC_Lab6_PigLatinTranslator
                         Console.Write(s + "way" + " ");
                     }
                 }
+
+                //Translate a word beginning with a consonant to Pig Latin
+                //by taking its first letter, placing at the end, and then 
+                //adding "way". Any punctuation used at the end is maintained.
+
                 else
                 {
                     string newWord = s.Remove(0, 1);
@@ -79,9 +91,12 @@ namespace GC_Lab6_PigLatinTranslator
                         Console.Write(newWord.Substring(0, newWord.Length - 1) + 
                         firstLetter + "way" + newWord[newWord.Length - 1] + " ");
                     }
-                    else
+                    else if(firstLetter.Equals('w'))
                     {
-                        
+                        Console.Write(newWord + "way" + " ");
+                    }
+                    else
+                    {                       
                         Console.Write(newWord + firstLetter + "way" + " ");
                     }
                 }
