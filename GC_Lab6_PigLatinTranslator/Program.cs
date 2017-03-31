@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 //Pete Rossman
 //Grand Circus .NET Bootcamp Lab 6
 //March 30, 2017
@@ -17,8 +18,9 @@ namespace GC_Lab6_PigLatinTranslator
         static void Main(string[] args)
         {
             bool run = true;
-            char[] delimiterChars = { ' ' };
+            char[] delimiterChars = { ' ' };           
             string word = "";
+            char[] SpecialChars = "@#$%^&*()".ToCharArray();
             Console.WriteLine("Welcome to the Pig Latin Translator!");
             while (run)
             {
@@ -39,8 +41,13 @@ namespace GC_Lab6_PigLatinTranslator
             foreach (string s in words)
             {
                 char firstLetter = s[0];
-                bool isVowel = "aeiouAEIOU".IndexOf(firstLetter) >= 0;                
-                if (isVowel == true)
+                bool isVowel = "aeiouAEIOU".IndexOf(firstLetter) >= 0;
+                int indexOf = s.IndexOfAny(SpecialChars);
+                if (indexOf > -1)
+                {
+                    Console.Write(s + " ");
+                }                                                                                        
+                else if (isVowel == true)
                 {
                     if (Char.IsPunctuation(s[s.Length - 1]))
                     {
