@@ -16,16 +16,30 @@ namespace GC_Lab6_PigLatinTranslator
     {
         static void Main(string[] args)
         {
+            bool run = true;
             char[] delimiterChars = { ' ' };
+            string word = "";
             Console.WriteLine("Welcome to the Pig Latin Translator!");
-            Console.WriteLine("\nEnter a word or sentence to be translated: ");
-            string word = Console.ReadLine();
+            while (run)
+            {
+                Console.WriteLine("\nEnter a word or sentence to be translated: ");
+                word = Console.ReadLine();
+                if (word.Equals(""))
+                {
+                    Console.WriteLine("You did not input anything! Please try again.");
+                }
+                else
+                {
+                    run = false;
+                }
+            }
             word = word.ToLower();
             string[] words = word.Split(delimiterChars);
+            Console.Write("The Pig Latin translation is: ");
             foreach (string s in words)
             {
                 char firstLetter = s[0];
-                bool isVowel = "aeiouAEIOU".IndexOf(firstLetter) >= 0;
+                bool isVowel = "aeiouAEIOU".IndexOf(firstLetter) >= 0;                
                 if (isVowel == true)
                 {
                     if (Char.IsPunctuation(s[s.Length - 1]))
@@ -42,7 +56,8 @@ namespace GC_Lab6_PigLatinTranslator
                     string newWord = s.Remove(0, 1);
                     if (Char.IsPunctuation(newWord[newWord.Length - 1]))
                     {
-                        Console.Write(newWord.Substring(0, newWord.Length - 1) + firstLetter + "way" + newWord[newWord.Length - 1] + " ");
+                        Console.Write(newWord.Substring(0, newWord.Length - 1) + 
+                        firstLetter + "way" + newWord[newWord.Length - 1] + " ");
                     }
                     else
                     {
