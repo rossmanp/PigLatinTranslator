@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Globalization;
+
 
 
 //Pete Rossman
@@ -54,9 +54,24 @@ namespace GC_Lab6_PigLatinTranslator
             foreach (string s in words)
             {
                 char firstLetter = s[0];
-                bool isVowel = "aeiouAEIOU".IndexOf(firstLetter) >= 0;
+                string vowels = "aeiouAEIOU";
+                bool isVowel = vowels.IndexOf(firstLetter) >= 0;
+                int firstVowel = 0;
+                bool vowelNotFound = true;
+                while (vowelNotFound)
+                {                 
+                    foreach (char c in s)
+                    {                   
+                        if (vowels.Contains(c))
+                        {
+                            firstVowel = s.IndexOf(c);
+                            vowelNotFound = false;
+                        }
+                    }
+                }
                 int indexOf = s.IndexOfAny(symbols);
                 string way = "way";
+
                 // If a word contains a symbol or a number, the word is not translated.
 
                 if (indexOf > -1 || s.Any(char.IsDigit))
@@ -64,10 +79,10 @@ namespace GC_Lab6_PigLatinTranslator
                     Console.Write(s + " ");
                 }
                 
-                //If the word starts with a vowel, "way" is appended to the word' end.
+                //If the word starts with a vowel, "way" is appended to the word's end.
                 //If a word ends with a punctuation mark, that mark is kept.
                                                                                                      
-                else if (isVowel == true)
+                else if (isVowel)
                 {
                     if (IsAllUpper(s))
                     {
@@ -89,7 +104,10 @@ namespace GC_Lab6_PigLatinTranslator
 
                 else
                 {
-                    string newWord = s.Remove(0, 1);
+                    string firstPart = s.Substring(0, firstVowel);
+                    firstPart = firstPart.ToLower();
+                    string newWord = s.Remove(0, firstVowel);
+
                     if (Char.IsUpper(firstLetter) && !IsAllUpper(s))
                     {
                         firstLetter = Char.ToLower(firstLetter);
@@ -102,15 +120,11 @@ namespace GC_Lab6_PigLatinTranslator
                     if (Char.IsPunctuation(newWord[newWord.Length - 1]))
                     {
                         Console.Write(newWord.Substring(0, newWord.Length - 1) + 
-                        firstLetter + way + newWord[newWord.Length - 1] + " ");
-                    }
-                    else if(firstLetter.Equals('w'))
-                    {
-                        Console.Write(newWord + way + " ");
-                    }
+                        firstPart + way + newWord[newWord.Length - 1] + " ");
+                    }                 
                     else
-                    {                        
-                        Console.Write(newWord + firstLetter + way + " ");
+                    {
+                        Console.Write(newWord + firstPart + way + " ");
                     }
                 }
             }
