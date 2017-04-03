@@ -24,6 +24,7 @@ namespace GC_Lab6_PigLatinTranslator
 
             //This array is used to detect if a word contains symbols.
             //If a word does contain one of the symbols in the array, it is not translated.
+
             char[] symbols = "@#$%^+&*()".ToCharArray();
 
             Console.WriteLine("Welcome to the Pig Latin Translator!");
@@ -44,7 +45,8 @@ namespace GC_Lab6_PigLatinTranslator
                 }
             }
 
-            //The input is converted to lowercase and split into words.            
+            //The input is split at white spaces into words. 
+                       
             string[] words = word.Split(delimiterChars);
             Console.Write("The Pig Latin translation is: ");
 
@@ -99,8 +101,9 @@ namespace GC_Lab6_PigLatinTranslator
                 }
 
                 //Translate a word beginning with a consonant to Pig Latin
-                //by taking its first letter, placing at the end, and then 
-                //adding "way". Any punctuation used at the end is maintained.
+                //by cutting the start of the word to the first vowel,  
+                //pasting that part at the end, and then "way" is added.
+                //Any punctuation used at the end is maintained.
 
                 else
                 {
@@ -108,20 +111,33 @@ namespace GC_Lab6_PigLatinTranslator
                     firstPart = firstPart.ToLower();
                     string newWord = s.Remove(0, firstVowel);
 
+                    //This conditional maintains proper capitalization for the title case.
+
                     if (Char.IsUpper(firstLetter) && !IsAllUpper(s))
                     {
                         firstLetter = Char.ToLower(firstLetter);
                         newWord = Char.ToUpper(newWord[0]) + newWord.Substring(1, newWord.Length - 1);                                              
                     }
+
+                    //This conditional changes "way" to "WAY" if each letter in the word is capitalized.
+
                     if (IsAllUpper(s))
                     {
                         way = "WAY";
+                        firstPart = firstPart.ToUpper();
                     }
+
+                    //This statement makes sure "way" is added before any punctuation mark
+                    //at the end of a word.
+
                     if (Char.IsPunctuation(newWord[newWord.Length - 1]))
                     {
                         Console.Write(newWord.Substring(0, newWord.Length - 1) + 
                         firstPart + way + newWord[newWord.Length - 1] + " ");
-                    }                 
+                    } 
+                    
+                    //This last statement writes the word in Pig Latin.
+                                    
                     else
                     {
                         Console.Write(newWord + firstPart + way + " ");
@@ -130,6 +146,8 @@ namespace GC_Lab6_PigLatinTranslator
             }
             Console.ReadLine();
         }
+
+        // This method detects if a word consists of all uppercase characters.
 
         public static bool IsAllUpper(string input)
         {
