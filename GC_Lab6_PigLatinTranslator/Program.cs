@@ -55,9 +55,8 @@ namespace GC_Lab6_PigLatinTranslator
 
             foreach (string s in words)
             {
-                char firstLetter = s[0];
                 string vowels = "aeiouAEIOU";
-                bool isVowel = vowels.IndexOf(firstLetter) >= 0;
+                bool isVowel = vowels.IndexOf(s[0]) >= 0;
                 int firstVowel = 0;              
                 foreach (char c in s)
                 {                   
@@ -110,12 +109,11 @@ namespace GC_Lab6_PigLatinTranslator
                     string firstPart = s.Substring(0, firstVowel);
                     firstPart = firstPart.ToLower();
                     string newWord = s.Remove(0, firstVowel);
-
+                    way = "ay";
                     //This conditional maintains proper capitalization for the title case.
 
-                    if (Char.IsUpper(firstLetter) && !IsAllUpper(s))
-                    {
-                        firstLetter = Char.ToLower(firstLetter);
+                    if (Char.IsUpper(s[0]) && !IsAllUpper(s))
+                    {                      
                         newWord = Char.ToUpper(newWord[0]) + newWord.Substring(1, newWord.Length - 1);                                              
                     }
 
@@ -123,7 +121,7 @@ namespace GC_Lab6_PigLatinTranslator
 
                     if (IsAllUpper(s))
                     {
-                        way = "WAY";
+                        way = "AY";
                         firstPart = firstPart.ToUpper();
                     }
 
