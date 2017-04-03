@@ -56,14 +56,14 @@ namespace GC_Lab6_PigLatinTranslator
                 char firstLetter = s[0];
                 string vowels = "aeiouAEIOU";
                 bool isVowel = vowels.IndexOf(firstLetter) >= 0;
-                int firstVowel = -1;              
+                int firstVowel = 0;              
                 foreach (char c in s)
                 {                   
                     if (vowels.Contains(c))
                     {
                         firstVowel = s.IndexOf(c);                       
                     }
-                    if (firstVowel > -1)
+                    if (firstVowel > 0)
                     {
                         break;
                     }
