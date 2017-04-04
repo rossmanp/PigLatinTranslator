@@ -35,8 +35,9 @@ namespace GC_Lab6_PigLatinTranslator
             {
                 Console.WriteLine("\nEnter a word or sentence to be translated: ");
                 word = Console.ReadLine();
-                if (word.Equals(""))
+                if (string.IsNullOrWhiteSpace(word))
                 {
+
                     Console.WriteLine("You did not input anything! Please try again.");
                 }
                 else
@@ -55,8 +56,7 @@ namespace GC_Lab6_PigLatinTranslator
 
             foreach (string s in words)
             {
-                string vowels = "aeiouAEIOU";
-                bool isVowel = vowels.IndexOf(s[0]) >= 0;
+                string vowels = "aeiouAEIOU";               
                 int firstVowel = 0;              
                 foreach (char c in s)
                 {                   
@@ -83,7 +83,7 @@ namespace GC_Lab6_PigLatinTranslator
                 //If the word starts with a vowel, "way" is appended to the word's end.
                 //If a word ends with a punctuation mark, that mark is kept.
                                                                                                      
-                else if (isVowel)
+                else if (firstVowel == 0)
                 {
                     if (IsAllUpper(s))
                     {
