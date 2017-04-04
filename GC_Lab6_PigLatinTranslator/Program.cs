@@ -144,7 +144,7 @@ namespace GC_Lab6_PigLatinTranslator
                         }
                     }
                 }
-                Console.WriteLine("\nDo you want to enter another word or sentence (y/n): ");
+                
                 programRun = Continue();
                 run = true;             
             }
@@ -167,6 +167,7 @@ namespace GC_Lab6_PigLatinTranslator
 
         public static Boolean Continue()
         {
+            Console.WriteLine("\nDo you want to enter another word or sentence (y/n): ");
             string input = Console.ReadLine();
             Boolean run = true;
             input = input.ToLower();
